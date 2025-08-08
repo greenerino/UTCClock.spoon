@@ -1,4 +1,7 @@
-local UTCClock = {}
+local UTCClock = {
+    enableClock = true,
+    enableEpoch = true
+}
 
 ClockMenuItem = hs.menubar.new()
 EpochMenuItem = hs.menubar.new()
@@ -15,11 +18,6 @@ local function setEpochDisplay()
     if EpochMenuItem then
         EpochMenuItem:setTitle(time)
     end
-end
-
-function UTCClock:start()
-    _UTCClockTimer = hs.timer.doEvery(1, setClockDisplay)
-    _EpochClockTimer = hs.timer.doEvery(1, setEpochDisplay)
 end
 
 local function onClockClicked()
@@ -45,9 +43,22 @@ end
 
 local function onEpochClicked()
     hs.pasteboard.setContents(os.time())
+    hs.alert("Copied timestamp to clipboard", { textSize = 19, }, hs.screen.mainScreen(), 1)
 end
 
-ClockMenuItem:setClickCallback(onClockClicked)
-EpochMenuItem:setClickCallback(onEpochClicked)
+function UTCClock:start()
+    if UTCClock.enableClock then
+        _UTCClockTimer = hs.timer.doEvery(1, setClockDisplay)
+        ClockMenuItem:setClickCallback(onClockClicked)
+    else
+        ClockMenuItem:removeFromMenuBar()
+    end
+    if UTCClock.enableEpoch then
+        _EpochClockTimer = hs.timer.doEvery(1, setEpochDisplay)
+        EpochMenuItem:setClickCallback(onEpochClicked)
+    else
+        EpochMenuItem:removeFromMenuBar()
+    end
+end
 
 return UTCClock
