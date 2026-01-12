@@ -35,7 +35,7 @@ local function onClockClicked()
       local utctime = os.date('!%c', input)
       local localtime = os.date('%c', input)
       hs.dialog.alert(1, 1, nil,
-        'UTC time: ' .. utctime .. '\nLocal time: ' .. localtime
+        input .. '\nUTC time: ' .. utctime .. '\nLocal time: ' .. localtime
       )
     end
   end
