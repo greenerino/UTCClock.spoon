@@ -9,7 +9,7 @@ EpochMenuItem = hs.menubar.new()
 local function setClockDisplay()
     local time = os.date("!%H:%M:%S")
     if ClockMenuItem then
-        ClockMenuItem:setTitle(time)
+        ClockMenuItem:setTitle(time .. " UTC")
     end
 end
 
