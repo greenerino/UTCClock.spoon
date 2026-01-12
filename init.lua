@@ -24,9 +24,9 @@ local function onClockClicked()
   local convertButton = 'Convert'
   local cancelButton = 'Cancel'
   local button, input = hs.dialog.textPrompt(
-    'hello world',
-    'info text',
-    'default text',
+    'Translate Unix Timestamp',
+    '',
+    '',
     convertButton,
     cancelButton)
   if button == convertButton then
