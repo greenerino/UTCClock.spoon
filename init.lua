@@ -48,13 +48,13 @@ end
 
 function UTCClock:start()
     if UTCClock.enableClock then
-        _UTCClockTimer = hs.timer.doEvery(1, setClockDisplay)
+        _UTCClockTimer = hs.timer.doEvery(0.1, setClockDisplay)
         ClockMenuItem:setClickCallback(onClockClicked)
     else
         ClockMenuItem:removeFromMenuBar()
     end
     if UTCClock.enableEpoch then
-        _EpochClockTimer = hs.timer.doEvery(1, setEpochDisplay)
+        _EpochClockTimer = hs.timer.doEvery(0.1, setEpochDisplay)
         EpochMenuItem:setClickCallback(onEpochClicked)
     else
         EpochMenuItem:removeFromMenuBar()
